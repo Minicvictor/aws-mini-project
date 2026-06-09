@@ -210,7 +210,7 @@ sudo systemctl reload nginx
 
 ### Portfolio Page in Browser
 
-![Portfolio Page](screenshots/portfolio-browser.png)
+![Portfolio Page](screenshots/portfoliobrowser.png)
 
 > Custom personal portfolio page live at `http://42.200.163.228`, replacing the default Nginx welcome 
 
