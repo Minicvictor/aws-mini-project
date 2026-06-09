@@ -101,14 +101,6 @@ Internet Gateway
 
 -----
 
-### Public IP Address
-
-![EC2 Public IP](screenshots/ec2-public-ip.png)
-
-> Public IPv4 address assigned: `[YOUR PUBLIC IP HERE]`
-
------
-
 ## Task 4 — Security Groups
 
 ### Security Group Rules
@@ -230,7 +222,6 @@ sudo systemctl reload nginx
 |Internet Gateway         |`screenshots/internet-gateway.png`    |⬜     |
 |Route Table              |`screenshots/route-table.png`         |⬜     |
 |EC2 Instance Running     |`screenshots/ec2-running.png`         |⬜     |
-|EC2 Public IP            |`screenshots/ec2-public-ip.png`       |⬜     |
 |Security Group           |`screenshots/security-group.png`      |⬜     |
 |Nginx Status             |`screenshots/nginx-status.png`        |⬜     |
 |SSH Terminal             |`screenshots/ssh-terminal.png`        |⬜     |
