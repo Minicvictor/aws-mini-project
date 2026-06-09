@@ -139,6 +139,14 @@ Internet Gateway
 
 -----
 
+### Nginx homepage
+
+![Nginx homepage screenshot](screenshots/aws-custom-page.png)
+
+> output of index.html file
+
+-----
+
 ### SSH Connection to Instance
 
 ![SSH Terminal Screenshot](screenshots/ssh-connection.png)
