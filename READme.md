@@ -51,7 +51,7 @@ Internet Gateway
 
 ## Task 1 — Architecture Diagram
 
-![Architecture Diagram](screenshots/architecture-diagram.png)
+![Task 1 Architecture](screenshots/Architectural-diagram.png)(screenshots/architecture-diagram.png)
 
 > **Deliverable:** Architecture diagram showing VPC, Subnet, IGW, Route Table, Security Group, EC2, and Nginx.
 
