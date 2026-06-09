@@ -1,1 +1,262 @@
+#AWS Web Server Deployment — Mini Project 1
 
+> **Course:** Cloud Computing
+> **Author:** Egwu Chidiebere Agha
+> **Date:** June 2026
+> **Stack:** AWS VPC · EC2 · Ubuntu · Nginx · IAM
+
+-----
+
+## 📋 Table of Contents
+
+1. [Project Overview](#project-overview)
+1. [Architecture](#architecture)
+1. [Task 1 — Architecture Diagram](#task-1--architecture-diagram)
+1. [Task 2 — Network Infrastructure](#task-2--network-infrastructure)
+1. [Task 3 — EC2 Instance](#task-3--ec2-instance)
+1. [Task 4 — Security Groups](#task-4--security-groups)
+1. [Task 5 — Nginx Web Server](#task-5--nginx-web-server)
+1. [Task 7 — Troubleshooting Log](#task-7--troubleshooting-log)
+1. [Bonus — Personal Portfolio Page](#bonus--personal-portfolio-page)
+1. [Live URL](#live-url)
+
+-----
+
+## Project Overview
+
+This project demonstrates the deployment of a secure, publicly accessible web server on AWS. It covers VPC networking, EC2 provisioning, Linux administration, Nginx configuration, and IAM best practices.
+
+-----
+
+## Architecture
+
+```
+Internet Users
+      |
+Internet Gateway
+      |
+  Route Table  (0.0.0.0/0 → IGW)
+      |
+ Public Subnet  10.0.1.0/24
+      |
+ Security Group  (ports 22, 80, 443)
+      |
+  EC2 Instance  (Ubuntu, t2.micro)
+      |
+    Nginx  → Personal Portfolio Page
+```
+
+-----
+
+## Task 1 — Architecture Diagram
+
+![Architecture Diagram](screenshots/architecture-diagram.png)
+
+> **Deliverable:** Architecture diagram showing VPC, Subnet, IGW, Route Table, Security Group, EC2, and Nginx.
+
+-----
+
+## Task 2 — Network Infrastructure
+
+### VPC
+
+![VPC Screenshot](screenshots/vpc.png)
+
+> Custom VPC created with CIDR `10.0.0.0/16`.
+
+-----
+
+### Subnet
+
+![Subnet Screenshot](screenshots/subnet.png)
+
+> Public subnet created with CIDR `10.0.1.0/24`. Auto-assign public IP enabled.
+
+-----
+
+### Internet Gateway
+
+![Internet Gateway Screenshot](screenshots/internet-gateway.png)
+
+> Internet Gateway created and attached to the VPC.
+
+-----
+
+### Route Table
+
+![Route Table Screenshot](screenshots/route-table.png)
+
+> Route table configured with route `0.0.0.0/0 → IGW` and associated with the public subnet.
+
+-----
+
+## Task 3 — EC2 Instance
+
+### Instance Running
+
+![EC2 Instance Running](screenshots/ec2-running.png)
+
+> EC2 instance launched inside the public subnet. Instance state: **Running**.
+
+-----
+
+### Public IP Address
+
+![EC2 Public IP](screenshots/ec2-public-ip.png)
+
+> Public IPv4 address assigned: `[YOUR PUBLIC IP HERE]`
+
+-----
+
+## Task 4 — Security Groups
+
+### Security Group Rules
+
+![Security Group Screenshot](screenshots/security-group.png)
+
+|Port|Protocol|Source    |Purpose                         |
+|----|--------|----------|--------------------------------|
+|22  |TCP     |My IP only|SSH — restricted to admin only  |
+|80  |TCP     |0.0.0.0/0 |HTTP — public web access        |
+|443 |TCP     |0.0.0.0/0 |HTTPS — secure public web access|
+
+**Security notes:**
+
+- Port 22 is restricted to a single IP address to prevent brute-force attacks.
+- Ports 80 and 443 are open to all IPs so the website is publicly accessible.
+- No other ports are open — unnecessary exposure is avoided.
+
+-----
+
+## Task 5 — Nginx Web Server
+
+### Nginx Service Running
+
+![Nginx Service Status](screenshots/nginx-status.png)
+
+> Output of `sudo systemctl status nginx` confirming the service is **active (running)**.
+
+-----
+
+### SSH Connection to Instance
+
+![SSH Terminal Screenshot](screenshots/ssh-terminal.png)
+
+> Terminal showing successful SSH connection and Nginx installation commands.
+
+-----
+
+## Task 7 — Troubleshooting Log
+
+### Issue 1: SSH Connection Timed Out
+
+|Field       |Detail                                                                                      |
+|------------|--------------------------------------------------------------------------------------------|
+|**Problem** |`ssh` command hung indefinitely with no response                                            |
+|**Cause**   |Route table was not associated with the public subnet                                       |
+|**Solution**|Went to VPC → Route Tables → Subnet Associations and linked `public-subnet-1` to `public-rt`|
+
+-----
+
+### Issue 2: Permission Denied (publickey)
+
+|Field       |Detail                                                        |
+|------------|--------------------------------------------------------------|
+|**Problem** |`Permission denied (publickey)` error when running `ssh`      |
+|**Cause**   |The `.pem` file had permissions `644`, which OpenSSH rejects  |
+|**Solution**|Ran `chmod 400 project-key.pem` to restrict to owner-read-only|
+
+-----
+
+### Issue 3: Web Page Not Loading in Browser
+
+|Field       |Detail                                                          |
+|------------|----------------------------------------------------------------|
+|**Problem** |Browser showed “This site can’t be reached” after Nginx install |
+|**Cause**   |Security Group was missing the inbound rule for port 80         |
+|**Solution**|Added inbound rule: Type = HTTP, Port = 80, Source = `0.0.0.0/0`|
+
+-----
+
+## Bonus — Personal Portfolio Page
+
+The default Nginx page was replaced with a custom personal DevOps portfolio page, deployed directly on the EC2 instance.
+
+### Steps Taken
+
+```bash
+# SSH into instance
+ssh -i project-key.pem ubuntu@<PUBLIC_IP>
+
+# Open the Nginx web root index file
+sudo nano /var/www/html/index.html
+
+# Set correct ownership and permissions
+sudo chown www-data:www-data /var/www/html/index.html
+sudo chmod 644 /var/www/html/index.html
+
+# Reload Nginx to serve the new page
+sudo systemctl reload nginx
+```
+
+### Portfolio Page in Browser
+
+![Portfolio Page](screenshots/portfolio-browser.png)
+
+> Custom personal portfolio page live at `http://[YOUR PUBLIC IP HERE]`, replacing the default Nginx welcome page.
+
+### Portfolio Page — Full View
+
+![Portfolio Page Full](screenshots/portfolio-full.png)
+
+> Full-page view showing all sections: About, Skills, Project, and Contact.
+
+-----
+
+## Live URL
+
+hhhh **http://[YOUR PUBLIC IP HERE]**
+
+-----
+
+## Screenshots Checklist
+
+|Screenshot               |File                                  |Status|
+|-------------------------|--------------------------------------|------|
+|Architecture Diagram     |`screenshots/architecture-diagram.png`|⬜     |
+|VPC                      |`screenshots/vpc.png`                 |⬜     |
+|Subnet                   |`screenshots/subnet.png`              |⬜     |
+|Internet Gateway         |`screenshots/internet-gateway.png`    |⬜     |
+|Route Table              |`screenshots/route-table.png`         |⬜     |
+|EC2 Instance Running     |`screenshots/ec2-running.png`         |⬜     |
+|EC2 Public IP            |`screenshots/ec2-public-ip.png`       |⬜     |
+|Security Group           |`screenshots/security-group.png`      |⬜     |
+|Nginx Status             |`screenshots/nginx-status.png`        |⬜     |
+|SSH Terminal             |`screenshots/ssh-terminal.png`        |⬜     |
+|Portfolio Page in Browser|`screenshots/portfolio-browser.png`   |⬜     |
+|Portfolio Page Full View |`screenshots/portfolio-full.png`      |⬜     |
+
+-----
+
+## Repository Structure
+
+```
+mini-project-1/
+├── README.md
+├── index.html
+├── screenshots/
+│   ├── architecture-diagram.png
+│   ├── vpc.png
+│   ├── subnet.png
+│   ├── internet-gateway.png
+│   ├── route-table.png
+│   ├── ec2-running.png
+│   ├── ec2-public-ip.png
+│   ├── security-group.png
+│   ├── nginx-status.png
+│   ├── ssh-terminal.png
+│   ├── portfolio-browser.png
+│   └── portfolio-full.png
+└── docs/
+    └── Mini_Project_1_Report.pdf
+```
