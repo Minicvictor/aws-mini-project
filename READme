@@ -2,23 +2,23 @@
 
 > **Course:** Cloud Computing
 > **Author:** Egwu Chidiebere Agha
-> **Date:** June 2026
+> **Date:** 9 June 2026
 > **Stack:** AWS VPC · EC2 · Ubuntu · Nginx · IAM
 
 -----
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#project-overview)
-1. [Architecture](#architecture)
-1. [Task 1 — Architecture Diagram](#task-1--architecture-diagram)
-1. [Task 2 — Network Infrastructure](#task-2--network-infrastructure)
-1. [Task 3 — EC2 Instance](#task-3--ec2-instance)
-1. [Task 4 — Security Groups](#task-4--security-groups)
-1. [Task 5 — Nginx Web Server](#task-5--nginx-web-server)
-1. [Task 7 — Troubleshooting Log](#task-7--troubleshooting-log)
-1. [Bonus — Personal Portfolio Page](#bonus--personal-portfolio-page)
-1. [Live URL](#live-url)
+2. [Architecture](#architecture)
+3. [Task 1 — Architecture Diagram](#task-1--architecture-diagram)
+4. [Task 2 — Network Infrastructure](#task-2--network-infrastructure)
+5. [Task 3 — EC2 Instance](#task-3--ec2-instance)
+6. [Task 4 — Security Groups](#task-4--security-groups)
+7. [Task 5 — Nginx Web Server](#task-5--nginx-web-server)
+8. [Task 7 — Troubleshooting Log](#task-7--troubleshooting-log)
+9. [Bonus — Personal Portfolio Page](#bonus--personal-portfolio-page)
+10. [Live URL](#live-url)
 
 -----
 
@@ -186,7 +186,7 @@ The default Nginx page was replaced with a custom personal DevOps portfolio page
 
 ```bash
 # SSH into instance
-ssh -i project-key.pem ubuntu@<PUBLIC_IP>
+ssh -i project-key.pem ubuntu@<44.200.163.228>
 
 # Open the Nginx web root index file
 sudo nano /var/www/html/index.html
@@ -215,7 +215,7 @@ sudo systemctl reload nginx
 
 ## Live URL
 
-hhhh **http://[YOUR PUBLIC IP HERE]**
+ **http://44.200.163.228/**
 
 -----
 
@@ -234,7 +234,6 @@ hhhh **http://[YOUR PUBLIC IP HERE]**
 |Nginx Status             |`screenshots/nginx-status.png`        |⬜     |
 |SSH Terminal             |`screenshots/ssh-terminal.png`        |⬜     |
 |Portfolio Page in Browser|`screenshots/portfolio-browser.png`   |⬜     |
-|Portfolio Page Full View |`screenshots/portfolio-full.png`      |⬜     |
 
 -----
 
@@ -243,7 +242,6 @@ hhhh **http://[YOUR PUBLIC IP HERE]**
 ```
 mini-project-1/
 ├── README.md
-├── index.html
 ├── screenshots/
 │   ├── architecture-diagram.png
 │   ├── vpc.png
@@ -256,7 +254,6 @@ mini-project-1/
 │   ├── nginx-status.png
 │   ├── ssh-terminal.png
 │   ├── portfolio-browser.png
-│   └── portfolio-full.png
 └── docs/
-    └── Mini_Project_1_Report.pdf
+    └── Mini_Project_1_Report.pdf and troubleshooting-log.pdf
 ```
