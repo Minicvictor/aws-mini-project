@@ -61,7 +61,7 @@ Internet Gateway
 
 ### VPC
 
-![VPC Screenshot](screenshots/vpc.png)
+![VPC Screenshot](screenshots/vpc-page.png)
 
 > Custom VPC created with CIDR `10.0.0.0/16`.
 
@@ -69,7 +69,7 @@ Internet Gateway
 
 ### Subnet
 
-![Subnet Screenshot](screenshots/subnet.png)
+![Subnet Screenshot](screenshots/subnet-page.png)
 
 > Public subnet created with CIDR `10.0.1.0/24`. Auto-assign public IP enabled.
 
@@ -77,7 +77,7 @@ Internet Gateway
 
 ### Internet Gateway
 
-![Internet Gateway Screenshot](screenshots/internet-gateway.png)
+![Internet Gateway Screenshot](screenshots/igw.png)
 
 > Internet Gateway created and attached to the VPC.
 
@@ -95,7 +95,7 @@ Internet Gateway
 
 ### Instance Running
 
-![EC2 Instance Running](screenshots/ec2-running.png)
+![EC2 Instance Running](screenshots/project-instance-running.png)
 
 > EC2 instance launched inside the public subnet. Instance state: **Running**.
 
@@ -113,7 +113,7 @@ Internet Gateway
 
 ### Security Group Rules
 
-![Security Group Screenshot](screenshots/security-group.png)
+![Security Group Screenshot](screenshots/project-sg.png)
 
 |Port|Protocol|Source    |Purpose                         |
 |----|--------|----------|--------------------------------|
@@ -133,7 +133,7 @@ Internet Gateway
 
 ### Nginx Service Running
 
-![Nginx Service Status](screenshots/nginx-status.png)
+![Nginx Service Status](screenshots/project-nginx-running.png)
 
 > Output of `sudo systemctl status nginx` confirming the service is **active (running)**.
 
@@ -141,7 +141,7 @@ Internet Gateway
 
 ### SSH Connection to Instance
 
-![SSH Terminal Screenshot](screenshots/ssh-terminal.png)
+![SSH Terminal Screenshot](screenshots/ssh-connection.png)
 
 > Terminal showing successful SSH connection and Nginx installation commands.
 
@@ -204,15 +204,7 @@ sudo systemctl reload nginx
 
 ![Portfolio Page](screenshots/portfolio-browser.png)
 
-> Custom personal portfolio page live at `http://[YOUR PUBLIC IP HERE]`, replacing the default Nginx welcome page.
-
-### Portfolio Page — Full View
-
-![Portfolio Page Full](screenshots/portfolio-full.png)
-
-> Full-page view showing all sections: About, Skills, Project, and Contact.
-
------
+> Custom personal portfolio page live at `http://42.200.163.228`, replacing the default Nginx welcome 
 
 ## Live URL
 
@@ -250,7 +242,6 @@ mini-project-1/
 │   ├── internet-gateway.png
 │   ├── route-table.png
 │   ├── ec2-running.png
-│   ├── ec2-public-ip.png
 │   ├── security-group.png
 │   ├── nginx-status.png
 │   ├── ssh-terminal.png
