@@ -85,7 +85,7 @@ Internet Gateway
 
 ### Route Table
 
-![Route Table Screenshot](screenshots/route-table.png)
+![Route Table Screenshot](screenshots/route-table..png)
 
 > Route table configured with route `0.0.0.0/0 → IGW` and associated with the public subnet.
 
@@ -202,7 +202,7 @@ sudo systemctl reload nginx
 
 ### Portfolio Page in Browser
 
-![Portfolio Page](screenshots/portfoliobrowser.png)
+![Portfolio Page](screenshots/portfolio-page.png)
 
 > Custom personal portfolio page live at `http://42.200.163.228`, replacing the default Nginx welcome 
 
